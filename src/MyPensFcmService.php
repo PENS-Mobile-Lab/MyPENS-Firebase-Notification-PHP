@@ -8,6 +8,9 @@ use Kreait\Firebase\Factory;
 use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification;
 
+/**
+ * MyPENS Firebase Cloud Messaging Service - Class yang berfungsi untuk mengirimkan notification kepada user MyPENS
+ */
 class MyPensFcmService
 {
     private $messaging;
@@ -19,7 +22,12 @@ class MyPensFcmService
         $this->messaging = $firebase->createMessaging();
     }
 
-    public function pushNotification($nip)
+    /**
+     * Kirim notification kepada dosen berdasarkan NIP
+     * @param string $nip NIP dari dosen
+     * @return void
+     */
+    public function pushNotificationToDosen(string $nip)
     {
         $message = CloudMessage::withTarget('topic', "dosen_perizinan_absensi_$nip")
             ->withNotification(Notification::create(
