@@ -1,0 +1,16 @@
+{
+    "name": "hezbi/absensi_pens_php",
+    "autoload": {
+        "psr-4": {
+            "Hezbi\\AbsensiPensPhp\\": "src/"
+        }
+    },
+    "require": {
+        "kreait/firebase-php": "4.44.0"
+    },
+    "config": {
+        "platform": {
+            "php": "7.0.33"
+        }
+    }
+}
