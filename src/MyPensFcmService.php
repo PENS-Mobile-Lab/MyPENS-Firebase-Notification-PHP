@@ -27,17 +27,13 @@ class MyPensFcmService
      * @param string $nip NIP dari dosen
      * @return void
      */
-    public function pushNotificationToDosen(string $nip)
+    public function pushNotificationToDosen(string $nip, string $title, string $body)
     {
         $message = CloudMessage::withTarget('topic', "dosen_perizinan_absensi_$nip")
-            ->withNotification(Notification::create(
-                'Perizinan Absensi Baru',
-                'Anda mendapatkan perizinan absensi baru!'
-            ));
+            ->withNotification(Notification::create($title, $body));
 
         try {
             $this->messaging->send($message);
-            echo 'Berhasil send message';
         } catch (MessagingException $e) {
             echo "Ada Firebase Exception : {$e->getMessage()}";
         } catch (FirebaseException $e) {
